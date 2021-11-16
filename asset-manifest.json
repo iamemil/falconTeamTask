@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/falconTeamTask/static/js/main.64591919.chunk.js",
+    "main.js.map": "/falconTeamTask/static/js/main.64591919.chunk.js.map",
+    "runtime-main.js": "/falconTeamTask/static/js/runtime-main.7e059dad.js",
+    "runtime-main.js.map": "/falconTeamTask/static/js/runtime-main.7e059dad.js.map",
+    "static/js/2.67e5194e.chunk.js": "/falconTeamTask/static/js/2.67e5194e.chunk.js",
+    "static/js/2.67e5194e.chunk.js.map": "/falconTeamTask/static/js/2.67e5194e.chunk.js.map",
+    "static/js/3.2799ccd6.chunk.js": "/falconTeamTask/static/js/3.2799ccd6.chunk.js",
+    "static/js/3.2799ccd6.chunk.js.map": "/falconTeamTask/static/js/3.2799ccd6.chunk.js.map",
+    "index.html": "/falconTeamTask/index.html",
+    "static/js/2.67e5194e.chunk.js.LICENSE.txt": "/falconTeamTask/static/js/2.67e5194e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7e059dad.js",
+    "static/js/2.67e5194e.chunk.js",
+    "static/js/main.64591919.chunk.js"
+  ]
+}
