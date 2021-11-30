@@ -1,9 +1,12 @@
 import React from "react";
 import {useState} from "react";
 import { Box, Center, Container, Button, Image, Text } from "@chakra-ui/react"
+import SnapshotService from "../../service/snapshotService";
 function AddSnapshot(props) {
 
     const [image, setImage] = useState(null)
+
+    let snapshotService = new SnapshotService();
 
     const pasteFromClipboard = (e) => {
       if(e.clipboardData.files.length > 0){
@@ -11,6 +14,12 @@ function AddSnapshot(props) {
           setSnapshotImage(e.clipboardData.files[0]);
         }
       }
+    }
+
+    const sendSnapshot = (image) => {
+      const data = new FormData();
+      data.append('file', image);
+      snapshotService.sendSnapshot(data);
     }
   
     const setSnapshotImage = (file) => {
@@ -35,6 +44,7 @@ function AddSnapshot(props) {
             colorScheme="blue"
             isLoading={props.isSubmitting}
             type="submit"
+            onClick={sendSnapshot}
           >
             Submit
           </Button>
