@@ -5,6 +5,7 @@ import SnapshotService from "../../service/snapshotService";
 function AddSnapshot(props) {
 
     const [image, setImage] = useState(null)
+    const [payload, setPayload] = useState(null)
 
     let snapshotService = new SnapshotService();
 
@@ -12,13 +13,15 @@ function AddSnapshot(props) {
       if(e.clipboardData.files.length > 0){
         if(e.clipboardData.files[0].type.startsWith("image/")){
           setSnapshotImage(e.clipboardData.files[0]);
+          setPayload(e.clipboardData.files[0]);
         }
       }
     }
 
     const sendSnapshot = () => {
+      console.log(payload);
       const data = new FormData();
-      data.append('file', image);
+      data.append('file', payload);
       snapshotService.sendSnapshot(data);
     }
   
