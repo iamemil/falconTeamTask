@@ -16,7 +16,7 @@ function AddSnapshot(props) {
       }
     }
 
-    const sendSnapshot = (image) => {
+    const sendSnapshot = () => {
       const data = new FormData();
       data.append('file', image);
       snapshotService.sendSnapshot(data);
