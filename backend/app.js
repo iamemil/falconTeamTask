@@ -2,13 +2,10 @@ const express=require('express');
 const engine = require('ejs-mate');
 const multer= require('multer');
 const Jimp = require('jimp');
-const upload=multer({dest: 'uploads/'})
+const cors = require("cors");
 const path = require('path');
 const app=express();
 //const nodemailer = require('nodemailer');
-
-
-//app.use(cors())
 
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
@@ -22,13 +19,36 @@ app.get('/', (req, res)=>{
     res.render('index');
 })
 
-app.post('/img', upload.single('photo'), async(req, res)=>{
-    const im2=req.file.filename;
+const corsOrigin = 'http://localhost:3000';
+app.use(cors({
+  origin:[corsOrigin],
+  methods:['GET','POST'],
+  credentials: true 
+})); 
+
+const imageUploadPath = "uploads/";
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, imageUploadPath)
+  },
+  filename: function(req, file, cb) {
+    cb(null, `${file.fieldname}_${file.originalname}`)
+  }
+})
+
+const imageUpload = multer({storage: storage})
+
+app.post('/img', imageUpload.single("file"),  async (req, res)=>{
+    try{const im2=req.file;
     console.log(im2);
-    const image = await Jimp.read(`uploads/${im2}`);
-    image.grayscale().write(`uploads/${im2}_grey`);
-    res.render('img', {im2});
-    res.send(200);
+    const image =  await Jimp.read(`uploads/${im2.fieldname}_${im2.originalname}`);
+    image.grayscale().write(`uploads/${im2.fieldname}_grey_${im2.originalname}`);
+    }
+    catch(error){
+
+    }
+
     //res.download(`uploads/${im2}_grey`);
 
     ///change
